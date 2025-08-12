@@ -1,0 +1,134 @@
+<!DOCTYPE Index.html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Cadastro - BlueTheme</title>
+  <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  font-family: 'Segoe UI', sans-serif;
+}
+body {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  transition: 0.3s ease-in-out;
+}
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e3c72;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  font-weight: bold;
+  color: #2a5298;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  margin-top: 5px;
+}
+.form-group input:focus {
+  border-color: #1e3c72;
+}
+.btn {
+  background-color: #2a5298;
+  color: white;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background-color: #1e3c72;
+}
+.toggle-link {
+  margin-top: 15px;
+  text-align: center;
+  color: #1e3c72;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+  </style>
+</head>
+<body>
+  <div class="container" id="formContainer">
+    <h2 id="formTitle">Login</h2>
+    <form id="authForm">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" required />
+      </div>
+      <div class="form-group" id="nameGroup" style="display: none;">
+        <label for="name">Nome completo</label>
+        <input type="text" id="name" />
+      </div>
+      <button type="submit" class="btn" id="submitBtn">Entrar</button>
+    </form>
+    <div class="toggle-link" onclick="toggleForm()">Criar uma conta</div>
+  </div>
+  <script>
+    let isRegistering = false;
+
+    function toggleForm() {
+      const title = document.getElementById("formTitle");
+      const nameGroup = document.getElementById("nameGroup");
+      const submitBtn = document.getElementById("submitBtn");
+      const toggleLink = document.querySelector(".toggle-link");
+      isRegistering = !isRegistering;
+      if (isRegistering) {
+        title.textContent = "Cadastro";
+        nameGroup.style.display = "block";
+        submitBtn.textContent = "Cadastrar";
+        toggleLink.textContent = "Já tenho uma conta";
+      } else {
+        title.textContent = "Login";
+        nameGroup.style.display = "none";
+        submitBtn.textContent = "Entrar";
+        toggleLink.textContent = "Criar uma conta";
+      }
+    }
+
+    document.getElementById("authForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const name = document.getElementById("name").value;
+      if (isRegistering) {
+        alert(`Conta criada com sucesso!\nBem-vindo(a), ${name}`);
+        window.location.href = "Site.html";
+      } else {
+        alert(`Bem-vindo de volta, ${email}`);
+        window.location.href = "SiteIndex.html";
+      }
+    });
+  </script>
+</body>
+</html>
